@@ -30,8 +30,8 @@ namespace SubtitleUtil
     public class CardManager
     {
         internal List<Card> list;
-        public List<Card> ActiveCards;
-        public List<Card> InactiveCards;
+        internal List<Card> ActiveCards;
+        internal List<Card> InactiveCards;
         public CardManager(){
             list = new List<Card>();
             ActiveCards = new List<Card>();
