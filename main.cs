@@ -112,20 +112,6 @@ class Program
             }
         }
 
-
-        // string readout = "おおこ";
-  
-        // cManager.GetListStaringWith(readout);
-        // List<int> activeCardIds = cManager.GetActiveCardIds();
-        // Console.WriteLine("active:");
-        // foreach(int i in activeCardIds){
-        //     Console.WriteLine(i);
-        // }
-        // List<int> inactiveCardIds = cManager.GetInactiveCardIds();
-        // Console.WriteLine("inactive:");
-        // foreach(int i in inactiveCardIds){
-        //     Console.WriteLine(i);
-        // }
     }
 }
 
