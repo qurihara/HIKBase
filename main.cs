@@ -77,7 +77,7 @@ class Program
 
         int seikaiCardId = -1;
 
-        //以下はunityで札1に対応するaudiosource.playOneShot()後にどこかのUpdate関数で呼び出される想定
+        //以下はunityで札に対応するaudiosource.playOneShot()後にどこかのUpdate関数で呼び出される想定
 
         // float t = audiosource.time;
 
