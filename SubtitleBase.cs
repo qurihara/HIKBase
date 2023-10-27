@@ -48,6 +48,7 @@ namespace SubtitleUtil
             foreach(Card c in list){
                 InactiveCards.Add(c);
             }
+            if (s.Length == 0) return;
             foreach(Card c in list){
                 if (c.isStartingWith(s)){
                     ActiveCards.Add(c);
