@@ -25,60 +25,93 @@ class Program
         //1つのSubtitleManagerが1つの札に対応する。音声読み上げにともなうアノテーションを管理する。
         //1つのCardが1つの札に対応する。場にある札の状態を管理する。
 
-        //札1
-        SubtitleManager sManager1 = new SubtitleManager(1);
-        sManager1.LoadAnnotation(File.OpenRead("test.txt"));
-        sManager1.Dump();
-        readoutList.Add(sManager1);
-        cManager.Add(new Card(1,"おおえやまいくののみちのとほければまだふみもみずあまのはしだて"));
-
-        //札2
-        SubtitleManager sManager2 = new SubtitleManager(2);
-        sManager2.LoadAnnotation(File.OpenRead("test2.txt"));
-        sManager2.Dump();
-        readoutList.Add(sManager2);
-        cManager.Add(new Card(2,"おおこやまいくののみちのとほければまだふみもみずあまのはしだて"));
+        SubtitleManager sManager;
+        //札8
+        sManager = new SubtitleManager(8);
+        sManager.LoadAnnotation(File.OpenRead("008wagai.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(8,"わがいほはみやこのたつみしかぞすむよをうぢやまとひとはいふなり"));
 
         //札11
-        SubtitleManager sManager11 = new SubtitleManager(11);
-        sManager11.LoadAnnotation(File.OpenRead("011watanoharaya.txt"));
-        sManager11.Dump();
-        readoutList.Add(sManager11);
-        cManager.Add(new Card(11,"わたのはらや"));
+        sManager = new SubtitleManager(11);
+        sManager.LoadAnnotation(File.OpenRead("011watanoharaya.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(11,"わたのはらやそしまかけてこぎいでぬとひとにはつげよあまのつりぶね"));
+
+        //札20
+        sManager = new SubtitleManager(20);
+        sManager.LoadAnnotation(File.OpenRead("020wabi.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(20,"わびぬればいまはたおなじなにはなるみをつくしてもあはむとぞおもふ"));
+
+        //札38
+        sManager = new SubtitleManager(38);
+        sManager.LoadAnnotation(File.OpenRead("038wasura.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(38,"わすらるるみをばおもはずちかひてしひとのいのちのをしくもあるかな"));
+
+        //札54
+        sManager = new SubtitleManager(54);
+        sManager.LoadAnnotation(File.OpenRead("054wasure.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(54,"わすれじのゆくすゑまではかたければけふをかぎりのいのちともがな"));
+
+        //札76
+        sManager = new SubtitleManager(76);
+        sManager.LoadAnnotation(File.OpenRead("076watanoharako.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(76,"わたのはらこぎいでてみればひさかたのくもゐにまがふおきつしらなみ"));
+
+        //札92
+        sManager = new SubtitleManager(92);
+        sManager.LoadAnnotation(File.OpenRead("092wagaso.txt"));
+        sManager.Dump();
+        readoutList.Add(sManager);
+        cManager.Add(new Card(92,"わがそではしほひにみえぬおきのいしのひとこそしらねかわくまもなし"));
 
         int seikaiCardId = -1;
 
         //以下はunityで札1に対応するaudiosource.playOneShot()後にどこかのUpdate関数で呼び出される想定
 
         // float t = audiosource.time;
-        for(float t = 0f;t<2f;t=t+0.1f){
-            Console.WriteLine("time: " + t);
-            string readout = sManager1.GetSubtitleByPosition(t);
-            Console.WriteLine("readout: " + readout);
 
-            cManager.GetListStaringWith(readout);
-            List<int> activeCardIds = cManager.GetActiveCardIds();
-            Console.WriteLine("active:");
-            foreach(int i in activeCardIds){
-                Console.WriteLine(i);
-            }
-            List<int> inactiveCardIds = cManager.GetInactiveCardIds();
-            Console.WriteLine("inactive:");
-            foreach(int i in inactiveCardIds){
-                Console.WriteLine(i);
-            }
+        foreach(SubtitleManager sm in readoutList){
+            for(float t = 0f;t<4f;t=t+0.1f){
+                Console.WriteLine("time: " + t);
+                string readout = sm.GetSubtitleByPosition(t);
+                Console.WriteLine("readout: " + readout);
 
-            if (activeCardIds.Count == 1){
-                seikaiCardId = activeCardIds[0];
-                break;
+                cManager.GetListStaringWith(readout);
+                List<int> activeCardIds = cManager.GetActiveCardIds();
+                Console.WriteLine("active:");
+                foreach(int i in activeCardIds){
+                    Console.WriteLine(i);
+                }
+                List<int> inactiveCardIds = cManager.GetInactiveCardIds();
+                Console.WriteLine("inactive:");
+                foreach(int i in inactiveCardIds){
+                    Console.WriteLine(i);
+                }
+
+                if (activeCardIds.Count == 1){
+                    seikaiCardId = activeCardIds[0];
+                    break;
+                }
+                Console.WriteLine("----");
             }
-            Console.WriteLine("----");
+            if (seikaiCardId >= 0){
+                Console.WriteLine("Seikai card identified: " + seikaiCardId);
+            }else{
+                Console.WriteLine("Seikai doesn't exist: " + seikaiCardId);
+            }
         }
-        if (seikaiCardId >= 0){
-            Console.WriteLine("Seikai card identified: " + seikaiCardId);
-        }else{
-            Console.WriteLine("Seikai doesn't exist: " + seikaiCardId);
-        }
+
 
         // string readout = "おおこ";
   
