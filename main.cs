@@ -36,22 +36,48 @@ class Program
         cardList.Add(sManager2);
         cManager.Add(new Card(2,"おおこやまいくののみちのとほければまだふみもみずあまのはしだて"));
 
+        SubtitleManager sManager11 = new SubtitleManager(11);
+        sManager11.LoadAnnotation(File.OpenRead("011watanoharaya.txt"));
+        sManager11.Dump();
+        cardList.Add(sManager11);
+        cManager.Add(new Card(11,"わたのはらや"));
+
+
         //以下はunityでaudiosource.playOneShot()後にどこかのUpdate関数で呼び出される想定
-        float currentTime = 0.2f;
-        // string readout = sManager1.GetSubtitle(currentTime);
-        string readout = "おおえ";
+        for(float t = 0f;t<2f;t=t+0.1f){
+            Console.WriteLine("time: " + t);
+            string readout = sManager1.GetSubtitleByPosition(t);
+            Console.WriteLine("readout: " + readout);
+
+            cManager.GetListStaringWith(readout);
+            List<int> activeCardIds = cManager.GetActiveCardIds();
+            Console.WriteLine("active:");
+            foreach(int i in activeCardIds){
+                Console.WriteLine(i);
+            }
+            List<int> inactiveCardIds = cManager.GetInactiveCardIds();
+            Console.WriteLine("inactive:");
+            foreach(int i in inactiveCardIds){
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine("----");
+
+        }
+
+        // string readout = "おおこ";
   
-        cManager.GetListStaringWith(readout);
-        List<int> activeCardIds = cManager.GetActiveCardIds();
-        Console.WriteLine("active:");
-        foreach(int i in activeCardIds){
-            Console.WriteLine(i);
-        }
-        List<int> inactiveCardIds = cManager.GetInactiveCardIds();
-        Console.WriteLine("inactive:");
-        foreach(int i in inactiveCardIds){
-            Console.WriteLine(i);
-        }
+        // cManager.GetListStaringWith(readout);
+        // List<int> activeCardIds = cManager.GetActiveCardIds();
+        // Console.WriteLine("active:");
+        // foreach(int i in activeCardIds){
+        //     Console.WriteLine(i);
+        // }
+        // List<int> inactiveCardIds = cManager.GetInactiveCardIds();
+        // Console.WriteLine("inactive:");
+        // foreach(int i in inactiveCardIds){
+        //     Console.WriteLine(i);
+        // }
     }
 }
 

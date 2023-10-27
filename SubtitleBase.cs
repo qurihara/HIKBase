@@ -202,6 +202,18 @@ namespace SubtitleUtil
             }
         }
 
+        public string GetSubtitleByPosition(float currentPosition){
+            for (int i = 0; i < subtitleList.Count; i++)
+            {
+                float st = subtitleList[i].StartTime;
+                float et = subtitleList[i].EndTime;
+                if (st <= currentPosition && currentPosition < et){
+                    return subtitleList[i].Text;
+                }
+            }
+            //指定時刻に字幕がない            
+            return "";
+        }
         // public virtual void LoadSON(Stream s)
         // {
         //     Regex reg = new System.Text.RegularExpressions.Regex(@"\d\d\d\d\t");
