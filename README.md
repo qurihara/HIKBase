@@ -30,7 +30,7 @@ using SubtitleUtil;
 - List<int> GetActiveCardIds()
 - List<int> GetInactiveCardIds()
 
-の２つの関数により、「まだ正解の可能性のある札idのリスト」と「もう正解の可能性がない札idのリスト」が得られる。なぜGetListStartingWith関数の戻り値としてこれらリストを返さないかというと、ものすごく短時間に何回もGetListStaringWith(）が呼ばれる想定なので、そのたびにListオブジェクトをnewしなくてもよいようにしようと思ったから。これはメモリと実行時間の節約が目的。でも現状でList<int>を2つnewしているので、中途半端。次にリファクタリングするなら、GetActiveCardIds()とList<int> GetInactiveCardIds()でList<int>を毎回newしないようにしたいところ。
+の２つの関数により、「まだ正解の可能性のある札idのリスト」と「もう正解の可能性がない札idのリスト」が得られる。なぜGetListStartingWith関数の戻り値としてこれらリストを返さないかというと、ものすごく短時間に何回もGetListStaringWith(）が呼ばれる想定なので、そのたびにListオブジェクトをnewしなくてもよいようにしようと思ったから。これはメモリと実行時間の節約が目的。でも現状でList<int>を2つnewしているので、中途半端。次にリファクタリングするなら、GetActiveCardIds()とGetInactiveCardIds()でList<int>を毎回newしないようにしたいところ。
 
 ## SubtitleManagerクラス
 
